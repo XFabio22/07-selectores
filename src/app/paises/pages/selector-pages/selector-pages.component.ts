@@ -20,7 +20,7 @@ export class SelectorPagesComponent  implements OnInit{
     //llenar selectores
     regiones:string[]=[];
     paises : PaisSmall[]=[];
-    fronteras: string[]=[];
+    fronteras: PaisSmall[]=[];
 
     //ui
     cargando: boolean = false;
@@ -68,13 +68,14 @@ export class SelectorPagesComponent  implements OnInit{
           this.cargando = true;
 
         }),
-        switchMap(code => this.paisesService.getPaisPorAlphaCode(code ))
+        switchMap(code => this.paisesService.getPaisPorAlphaCode(code )),
+        switchMap(pais => this.paisesService.getPaisesPorCodigos(pais?.borders!))
       )
-      .subscribe(pais => {
-        this.fronteras = pais?.borders ||[];
+      .subscribe(paises => {
+         this.fronteras = paises;
         this.cargando = false;
 
-        console.log(pais);
+        console.log(paises);
         
       })
       
