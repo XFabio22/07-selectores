@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-selector-pages',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class SelectorPagesComponent {
 
+    miFormulario:FormGroup = this.fb.group({
+      region:['',Validators.required]
+    })
+
+
+    constructor(private fb:FormBuilder){}
+
+    guardar(){
+      
+    }
 }
