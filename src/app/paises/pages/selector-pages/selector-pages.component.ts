@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PaisesService } from '../../services/paises.service';
-import { PaisSmall } from '../../interfaces/paises.Interfaces';
+import { PaisSmall, pais } from '../../interfaces/paises.Interfaces';
 import { observable, switchMap, tap } from 'rxjs';
 
 @Component({
@@ -13,12 +13,14 @@ export class SelectorPagesComponent  implements OnInit{
 
     miFormulario:FormGroup = this.fb.group({
       region:['',Validators.required],
-      pais:['',Validators.required]
+      pais:['',Validators.required],
+      frontera:['',Validators.required]
     })
 
     //llenar selectores
     regiones:string[]=[];
     paises : PaisSmall[]=[];
+    fronteras: pais[]=[];
     constructor(private fb:FormBuilder, private paisesService:PaisesService){}
 
     ngOnInit(): void {
@@ -53,7 +55,22 @@ export class SelectorPagesComponent  implements OnInit{
         
       })
 
-    }
+      //para pais
+      this.miFormulario.get('pais')?.valueChanges
+      .subscribe(codigo => {
+        console.log(codigo);
+        
+      })
+      // .pipe(
+      //   switchMap(pais => this.paisesService.getPaisPorAlphaCode(pais.alpha3Code))
+      // ).subscribe(fronteras=> {
+      //   console.log('Code',fronteras);
+        
+      // })
+
+      }
+
+    
     guardar(){
 
     }
