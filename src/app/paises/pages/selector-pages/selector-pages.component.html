@@ -2,19 +2,53 @@
 <hr>
 
 
-<form [formGroup]="miFormulario" >
+    <ul>
+        <li>EU (European Union)</li>
+        <li>EFTA (European Free Trade Association)</li>
+        <li>CARICOM (Caribbean Community)</li>
+        <li>PA (Pacific Alliance)</li>
+        <li> AU (African Union)</li>
+        <li>AU (African Union)</li>
+        <li>USAN (Union of South American Nations)</li>
+        <li>EEU (Eurasian Economic Union)</li>
+        <li>AL (Arab League)</li>
+        <li>ASEAN (Association of Southeast Asian Nations)</li>
+        <li>CAIS (Central American Integration System)</li>
+        <li> CEFTA (Central European Free Trade Agreement)</li>
+        <li> NAFTA (North American Free Trade Agreement)</li>
+        <li>  SAARC (South Asian Association for Regional Cooperation)</li>
+    </ul>
 
+    
+
+
+<form [formGroup]="miFormulario" >
+    <!-- regiones -->
     <div class="row mb-3">
         <div class="col">
             <label class="form-label">Continente:</label>
             <select class="form-control" formControlName="region">
-                <option value="">--Selecciones Contienente --</option>
+                <option value="">--Seleccione Contienente --</option>
                 <option *ngFor="let region of regiones"
                 [value]="region|lowercase">{{region}}</option>
 
             </select>
         </div>
     </div>
+
+    <!-- paises -->
+    <div class="row mb-3">
+        <div class="col">
+            <label class="form-label">País:</label>
+            <select class="form-control" formControlName="pais">
+                <option value="">--Seleccione pais --</option>
+                <option *ngFor="let pais of paises"
+                [value]="pais.alpha3Code">{{pais.name}}</option>
+
+            </select>
+        </div>
+    </div>
+
 
     <div class="row">
         <div class="col">
